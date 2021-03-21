@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Login!{% endblock %}
+
+{% block body %}
+<div class="wrapper wrapper--login">
+    <h1>Welcome to the Hypertube World ! Enjoy</h1>
+    {% if error %}
+        <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    {% if app.user %}
+    <div class="mb-3">
+        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    </div>
+    {% endif %}
+    <form method="POST">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Enter email" required autofocus>
+
+          <!-- <input type="email" class="form-control" name="email" id="exampleInputEmail1" value = "{{last_username}}" aria-describedby="emailHelp" placeholder="Enter email"> -->
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+        <button class="btn btn-lg btn-primary" type="submit">
+            Submit
+        </button>
+    </form>
+
+    <hr/>
+    
+    <div class="btn-group">
+      <span class="bg-light or--btn">OR</span>
+      <div class="mt-2 btn-group-wrapper">
+        <div class="p-2 mt-2 social-link-btn bg-danger border border-dark">
+          <a href="{{ path('o_auth_start') }}" class="fa fa-github fa-2x text-light"></a> 
+          <a href="{{ path('o_auth_start') }}" class="social-text social-text-github text-light">Sign In with Github</a> 
+        </div>
+        <div class="p-2 mt-2 social-link-btn bg-info  border border-dark">
+          <a href="{{ path('oauth_get_42_code') }}" class="text-light"> <img class="logo42" src="{{asset("images/42_Logo.svg.png")}}"/> </a>
+          <a href="{{ path('oauth_get_42_code') }}" class="social-text social-text-42 text-light">Sign In with 42</a>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+
+
+{% endblock %}

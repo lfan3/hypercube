@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription InscriptionController!{% endblock %}
+{# 
+{% block stylesheets %}{{ include('sharing/style.html.twig') }}{% endblock %}
+{% block nav %}{{ include('sharing/nav.html.twig') }}{% endblock %} #}
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('test') }}
+{% endblock %}
+
+{% block body %}
+
+<div id='inscription-avatar-container' class="avatar d-flex flex-row justify-content-end">
+    <img src="{{asset("avatars/default.png")}}" alt="profile-image" class="avatarImg" id='profile-photo'>
+
+    <div class="custom-file-inscription" id="custom-file">
+      <form data-url="{{ path("inscription_test") }}" name="photo" method="post" id='inscr-form' class="profile-avatar-form, inscri-form" enctype="multipart/form-data">
+        <div class="form-row form-inscr-row">
+          <div class="col-7 input-insr form-inscr-col">
+            <input type="file" id="user_photo_inscription" name="avatarImg" class="custom-input, custom-file-input-inscri" required="required" placeholder="Select a new avatar"  />
+            <label for="user_photo_avatar" lang="en"  class="custom-label">
+              Select a new avatar
+            </label>
+          </div>
+          <div class="col-5">
+            <button type="submit" class="btn btn-primary form-inscr-col">Save changes</button>
+          </div>
+        </div>
+        
+        <div class="form-error"></div>
+
+      </form>
+    </div>
+  </div>
+
+  {% endblock %}

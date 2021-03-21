@@ -1,0 +1,88 @@
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+</head>
+<style>
+    body{
+        background-color: white;
+    }
+    .back-card{
+        background-color: #023047;
+    }
+    .content{
+        background-color: #FFB703;
+        padding: 0.3em;
+        height: 55%;
+    }
+    .logo{
+        color: #8ECAE6;
+        font-family: 'Berkshire Swash', cursive;
+        padding-top: 0.5em;
+    }
+    a{
+        font-family: 'Berkshire Swash', cursive;
+        display: block;
+        background-color: #023047;
+        width: 12em;
+        margin: auto;
+        margin-top:1em;
+        padding: 0.3em;
+        text-decoration: none;
+        color: #8ECAE6;
+    }
+    .container{
+        margin: auto;
+        text-align: center;
+    }
+    .mt2{
+        margin-top:2em;
+    }
+    .heart{
+        color: red;
+    }
+    .cat{
+        color: orange;
+    }
+    p {
+    display: block;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+</style>
+
+<body>
+
+<div class="container text-center back-card" style="height: 23em; width: 50%">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="logo">&#x1F389; Hypertube &#x1F39E;</h1>
+        </div>
+    </div>
+    <div class="content text-center" >
+        <div class="row" >
+            <div class="col-12">
+                <h2><strong>Hello !</strong></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center"> You forget your password ? </p>
+                <p class="text-center"> No panic </p>
+                <p> click the button below and reinitialate your password. </p> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="{{url('app_login')}}"  type="button" class="btn btn-info text-center">link to change the password</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="mt2 text-center " style="color: #E0FBFC;" >
+        Made with <span class="heart"> &#x2764;</span> by miaomiao <span class="cat"> &#x1F63C;</span> at Hypertube</a>
+    </div>
+</div>
+</body>
