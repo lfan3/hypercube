@@ -1,0 +1,35 @@
+
+
+###
+POST https://api.intra.42.fr/oauth/token
+content-type: application/json
+
+{
+    "grant_type" : "authorization_code",
+    "client_id" : "29995395ad2e95e2ce60eb1705fa0667a22e40d81207d87f2e513035e1b418fb",
+    "client_secret" : "81875d1efcbb93c743ae3aab34ece3927d74b53a8d01af16249a4a5adc2b8d9d",
+    "code" : "a7497ed533950afad9441b9026d1417d68c2882ab71ccaf5e902f4500f585a83",
+    "redirect_uri" : "http://localhost:8000/oauth/check/42Api"
+}
+
+###
+GET https://api.intra.42.fr/v2/me
+Authorization: Bearer 0b77f7745bbad04735702244ae8ef4f1f1a6112f015db7c9f7748ca6f2d8de85
+
+###
+
+GET https://api.intra.42.fr/oauth/authorize?client_id=29995395ad2e95e2ce60eb1705fa0667a22e40d81207d87f2e513035e1b418fb&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Foauth%2Fcheck%2F42Api&scope=public&response_type=code
+
+###
+
+GET https://api.intra.42.fr/oauth/authorize
+ContentType : application/vnd.api+json
+
+{
+    "client_id" : "29995395ad2e95e2ce60eb1705fa0667a22e40d81207d87f2e513035e1b418fb",
+    "redirect_uri" : "http%3A%2F%2Flocalhost%3A8000%2Foauth%2Fcheck%2F42Api",
+    "scope" : "public",
+    "response_type" : "code"
+}
+
+###
