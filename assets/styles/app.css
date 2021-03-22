@@ -1,0 +1,200 @@
+@import "~bootstrap";
+@import "~font-awesome";
+
+:root {
+    --blue-sky: #1e90ff;
+    --white: #ffffff;
+}
+.wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+.-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+body{
+    height: 100vh;
+    background-size: cover;
+    background-blend-mode: saturation;
+    background-color:black; 
+}
+
+.navbar-brand-custum
+{
+    font-weight: bold;
+}
+
+#bg_image{
+    opacity: 0.3;
+    position: absolute;
+    z-index: -999;
+    width: 100%;
+} 
+
+.wrapper--login{
+    margin-top: 13vh;
+}
+
+.wrapper--inscription
+{
+    margin-top: 7vh;
+}
+
+h1, .or--btn{
+    text-align: center;
+}
+
+/* login-part-specifique */
+hr {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid wheat;
+}
+/* water-drop-form */
+.or--btn{
+    background-color: lightblue;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -2.5em;
+    margin-left: 45%;
+    -webkit-border-top-left-radius: 25px;
+    -webkit-border-top-right-radius: 25px;
+    -webkit-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 25px;
+    -webkit-transform:rotate(45deg);
+    box-shadow: 1px 1px 7px #1a1a1a;
+}
+.or--btn::before{
+    content: "OR";
+    position: absolute;
+    z-index: 1;
+    color: var(--blue-sky);
+    transform: rotate(-45deg);
+    transform: rotate(-45deg) translateX(-8px) translateY(10px);
+    font-weight: bold;
+}
+.btn-group{
+    width: 100%;
+    background-color: darkslategray;
+    padding-bottom: 3em;
+    padding-top: 2em;
+}
+.btn-group-wrapper{
+    margin: auto;
+}
+.social-link-btn:before {
+    margin-right: 1.5em;
+}
+
+.social-link-btn:after {
+    content: "";
+    /* color: black; */
+    background-color: black;
+    display: block;
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 2.5em;
+}
+
+.social-link-btn{
+    color: white;
+    /* padding: 1em 1.5em; */
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+}
+.social-text{
+    padding-left: 0.5em;
+}
+
+.social-text-42{
+    position: relative;
+    top: 0.1em;
+    left: 1em;
+}
+
+.social-text-github{
+    position: relative;
+    top: -0.3em;
+}
+
+.logo42{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+}
+
+footer{
+    color: white;
+}
+
+/* inscription part */
+.text-helper{
+    color: yellow;
+}
+
+#inscription-avatar-container{
+    height: 5em;
+}
+
+/* profile page photo modal style */
+.modal-container{
+    position: relative;
+    margin-top: 10%;
+}
+.profile-wrapper{
+    background: white;
+    color: black;
+    padding: 2em;
+}
+.avatarImg{
+ max-height: 100%;
+ max-width: 100%;
+ object-fit: contain;
+}
+.end-btn{
+    margin-top: 1em;
+}
+
+.custom-modal{
+    top:15%;
+    color: black;
+}
+.custom-file-inscription{
+    height: 100%;
+
+}
+.input-insr{
+    background-color: green;
+
+}
+.custom-label
+{
+    height: 5em;
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: 15%;
+}
+
+.form-inscr-row{
+    height: 100%;
+    width: 24em;
+}
+.form-inscr-col{
+    height: 100%;
+    width: 100%;
+}
+.inscription-profile-form{
+    height: 100%;
+}
+.inscription-input{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+}
