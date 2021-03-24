@@ -17,6 +17,14 @@ use Doctrine\Persistence\ObjectManager;
 
 class OAuthController extends AbstractController
 {
+    private $UID42;
+    private $SECRET42;
+
+    public function __construct($UID42, $SECRET42)
+    {
+        $this->UID42 = $UID42;
+        $this->SECRET42 = $SECRET42;
+    }
     /**
      * @Route("/oauth/check", name="o_auth_start")
      */
@@ -36,29 +44,23 @@ class OAuthController extends AbstractController
         
     }
 
+  
     /**
-     * @Route("/oauth/check/42api", name="o_auth42_start")
-     */
-    public function api42Entry(Client42Registry $client42Registry): RedirectResponse
-    {
-
-        // return $this->render('o_auth/index.html.twig', [
-        //     'controller_name' => 'OAuthController',
-        // ]);
-    }
-    /**
+     * from the 42btn, we direct to [oauth_get_42_code], 
+     * then it will redirect to [oauth_get_42_token],
+     * then redirect to [assessToken42]
+     * then enter into my APi42Authenticator
      * @Route("/oauth/get42ApiCode", name="oauth_get_42_code")
      */
     public function get42ApiCode()
     {
-        //endpoint to font btn
-        //to build a get http url like below
         //https://api.intra.42.fr/oauth/authorize?client_id=29995395ad2e95e2ce60eb1705fa0667a22e40d81207d87f2e513035e1b418fb&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Foauth%2Fcheck%2F42Api&response_type=code
+
         $redirectUri = $this->generateUrl('oauth_get_42_token',[], UrlGeneratorInterface::ABSOLUTE_URL);//name of the route, not the path
         $httpQuery = http_build_query(array(
             
-            "client_id" => "29995395ad2e95e2ce60eb1705fa0667a22e40d81207d87f2e513035e1b418fb",
-            "client_secret" => "81875d1efcbb93c743ae3aab34ece3927d74b53a8d01af16249a4a5adc2b8d9d",
+            "client_id" => $this->UID42,
+            "client_secret" => $this->SECRET42,
             "redirect_uri" => $redirectUri,
             "scope" => "public",
             "response_type" => "code"
@@ -69,7 +71,7 @@ class OAuthController extends AbstractController
     /**
      * @Route("/oauth/get42ApiToken", name="oauth_get_42_token")
      */
-    public function getAccessToken(Request $request, OAuth42Service $oAuth42Service)
+    public function getAccessToken(Request $request)
     {
         $code = $request->get('code');
         //if the user refused to authorise, go back to home
@@ -85,8 +87,8 @@ class OAuthController extends AbstractController
             ],
             'json' => [
                 "grant_type" => "authorization_code",
-                "client_id" => "29995395ad2e95e2ce60eb1705fa0667a22e40d81207d87f2e513035e1b418fb",
-                "client_secret" => "81875d1efcbb93c743ae3aab34ece3927d74b53a8d01af16249a4a5adc2b8d9d",
+                "client_id" => $this->UID42,
+                "client_secret" => $this->SECRET42,
                 "code" => $code,
                 "redirect_uri" => "http://localhost:8000/oauth/get42ApiToken"
             ],

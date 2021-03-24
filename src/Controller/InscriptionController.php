@@ -33,14 +33,14 @@ class InscriptionController extends BaseController
         $user = new User();
         $userPhoto = new UserPhoto();
         
-   //
         $form = $this->createForm(InscriptionType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            if(is_null($session->get('foo')) )
+            if(is_null($session->get('avatar')) )
                 $userPhoto->setPhotoLink($this->photoPath);
             else{
-                $userPhoto->setPhotoLink($session->get('foo'));
+                $userPhoto->setPhotoLink($session->get('avatar'));
+                $session->remove('avatar');
             }
             
             $userPhoto->setProfilePhoto(true);
@@ -53,7 +53,7 @@ class InscriptionController extends BaseController
             
             $om->persist($user);
             $om->flush();
-    
+            //todo: redirect to a page who says to check their email. change app_login to information to check email page
             return $this->redirectToRoute('app_login');
         }
 
@@ -64,30 +64,20 @@ class InscriptionController extends BaseController
     }
 
      /**
-     * @Route("/inscription_test", name="inscription_test" )
+     * @Route("/inscriptionUpdateAvatar", name="inscription_update_avatar" )
      */
-    public function test(Request $request, SessionInterface $session, ObjectManager $om, UserPasswordEncoderInterface $encoder, UploadFileService $uploadFileService)
+    public function updateAvatar(Request $request, SessionInterface $session, ObjectManager $om, UserPasswordEncoderInterface $encoder, UploadFileService $uploadFileService)
     {
         //get the file of formdata from ajax
         $file = $request->files->get('avatarImg');
  
         $uniqFileName = $uploadFileService->upload($file);
         $this->photoPath = '/avatars/'.$uniqFileName;
-        $session->set('foo', '/avatars/'.$uniqFileName);
+        $session->set('avatar', '/avatars/'.$uniqFileName);
 
         return new JsonResponse(['data'=>$this->photoPath]);
     }
 
-         /**
-     * @Route("/abc", name="inscription_test_index" )
-     */
-    public function test_index(Request $request, SessionInterface $session, ObjectManager $om, UserPasswordEncoderInterface $encoder, UploadFileService $uploadFileService)
-    {
-        //get the file of formdata from ajax
-
-
-        return $this->render('test/index.html.twig');
-    }
 
      /**
      * @Route("/sendEmail", name="sendEmail" )

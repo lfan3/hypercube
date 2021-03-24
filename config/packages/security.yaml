@@ -1,15 +1,44 @@
 security:
+    encoders:
+    # Use your user class name here
+        App\Entity\User:
+            algorithm: auto # This should be the same value as in config/packages/security.yaml
+            cost: 6 # Lowest possible value for bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        # chain_provider:
+        #     chain:
+        #         providers: [in_memory, user_db]
         users_in_memory: { memory: null }
+        by_database:
+            entity: 
+                class: App\Entity\User
+                property: email
+                #property: githubToken #the property hier is the id to make query and return result, related with firewalls, if i use form_login, i should precise in the frontend input name="_username" in side the email input, because form_login in firewall need _username and _password to gard the entrance
+            
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-            lazy: true
-            provider: users_in_memory
+            #lazy: true
+            # provider: users_in_memory
+            provider: by_database
+            guard:
+                authenticators:
+                   - App\Security\MyGitHubAuthenticator
+                   - App\Security\LoginFormAuthenticator
+                   - App\Security\Api42Authenticator
+                entry_point: App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                target: home
+    
+
+        
+           
+       
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

@@ -14,6 +14,8 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+        //expresso
+        //$this->getParameter('SECRET42');
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
